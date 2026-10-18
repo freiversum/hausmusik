@@ -295,7 +295,7 @@ private fun GroupTile(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 de.linuxundich.hausmusik.ui.common.NowPlayingCover(
                     g.artUrl, g.nowPlaying?.takeIf { it.kind == SourceKind.Radio }?.station, Modifier.size(44.dp), corner = 10.dp,
-                    placeholderColor = colors.subtle, iconColor = colors.content.copy(alpha = 0.5f), icon = AppIcons.Speaker, small = true,
+                    placeholderColor = colors.subtle, iconColor = colors.content.copy(alpha = 0.5f), icon = AppIcons.forSource(g.nowPlaying?.kind), small = true,
                 )
                 Column(Modifier.weight(1f).padding(start = 12.dp)) {
                     // Two lines: "Arbeitszimmer + Wohnzimmer" must not end in "Wohn…".

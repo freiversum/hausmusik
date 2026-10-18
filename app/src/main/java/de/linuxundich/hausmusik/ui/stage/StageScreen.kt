@@ -270,7 +270,7 @@ private data class CoverFx(
 
 @Composable
 private fun StageCover(group: GroupState, colors: CoverColors, modifier: Modifier, fx: CoverFx = CoverFx()) {
-    val icon = if (group.nowPlaying?.kind == SourceKind.Radio) AppIcons.Radio else AppIcons.Speaker
+    val icon = AppIcons.forSource(group.nowPlaying?.kind)
     // A station: its named placeholder until (and unless) its logo is there.
     val station = group.nowPlaying?.takeIf { it.kind == SourceKind.Radio }?.station
     val cover = @Composable { m: Modifier ->
@@ -622,7 +622,7 @@ fun StageSidePanel(group: GroupState, colors: CoverColors, actions: StageActions
                     url = group.artUrl, station = group.nowPlaying?.takeIf { it.kind == SourceKind.Radio }?.station,
                     modifier = Modifier.size(64.dp).shadow(12.dp, RoundedCornerShape(14.dp)), corner = 14.dp,
                     placeholderColor = colors.subtle, iconColor = colors.content.copy(alpha = 0.5f),
-                    icon = AppIcons.Speaker, small = true, keepPrevious = true,
+                    icon = AppIcons.forSource(group.nowPlaying?.kind), small = true, keepPrevious = true,
                 )
                 Spacer(Modifier.width(12.dp))
                 Column(Modifier.weight(1f)) {

@@ -176,13 +176,13 @@ private fun NightStage(household: HouseholdRepository, lyricsRepo: LyricsReposit
             Column(content, horizontalAlignment = Alignment.CenterHorizontally) { texts() }
         } else if (wide) {
             Row(content.padding(32.dp), verticalAlignment = Alignment.CenterVertically) {
-                Cover(group.artUrl, Modifier.size(coverSize), corner = 22.dp, placeholderColor = colors.subtle, iconColor = colors.content, icon = AppIcons.Speaker)
+                Cover(group.artUrl, Modifier.size(coverSize), corner = 22.dp, placeholderColor = colors.subtle, iconColor = colors.content, icon = AppIcons.forSource(now.kind))
                 Spacer(Modifier.width(32.dp))
                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) { texts() }
             }
         } else {
             Column(content.padding(32.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                Cover(group.artUrl, Modifier.size(coverSize), corner = 22.dp, placeholderColor = colors.subtle, iconColor = colors.content, icon = AppIcons.Speaker)
+                Cover(group.artUrl, Modifier.size(coverSize), corner = 22.dp, placeholderColor = colors.subtle, iconColor = colors.content, icon = AppIcons.forSource(now.kind))
                 Spacer(Modifier.height(20.dp))
                 texts()
             }

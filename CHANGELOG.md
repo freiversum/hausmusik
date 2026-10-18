@@ -12,6 +12,9 @@ All notable changes to Hausmusik are documented here. The format follows
   as the title. The stage, rooms sheet, widget and notification now show the
   input's name (for example "Turntable"), or "TV", plus its room when the input
   belongs to another room.
+- Without a cover, line-in now shows an input symbol and TV a TV symbol instead
+  of the speaker, on the stage, in the rooms sheet, the mini player, the night
+  stage and both widgets.
 
 ## [0.6.0] - 2026-10-17
 

@@ -735,7 +735,7 @@ private fun CompactMiniPlayer(group: GroupState, onOpen: () -> Unit, onPlayPause
                 group.artUrl, group.nowPlaying?.takeIf { it.kind == de.linuxundich.hausmusik.sonos.SourceKind.Radio }?.station,
                 Modifier.size(32.dp), corner = 16.dp,
                 placeholderColor = MaterialTheme.colorScheme.surfaceVariant, iconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                icon = AppIcons.Speaker, small = true)
+                icon = AppIcons.forSource(group.nowPlaying?.kind), small = true)
             val starting = LocalStarting.current
             Text(
                 starting?.let { stringResource(R.string.starting, it) } ?: group.nowPlaying?.title ?: stringResource(R.string.nothing_playing),
@@ -761,7 +761,7 @@ private fun MiniPlayer(group: GroupState, onOpen: () -> Unit, onPlayPause: () ->
                 group.artUrl, group.nowPlaying?.takeIf { it.kind == de.linuxundich.hausmusik.sonos.SourceKind.Radio }?.station,
                 Modifier.size(44.dp), corner = 10.dp,
                 placeholderColor = MaterialTheme.colorScheme.surfaceVariant, iconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                icon = AppIcons.Speaker, small = true)
+                icon = AppIcons.forSource(group.nowPlaying?.kind), small = true)
             // A started queue can take seconds: say so at once instead of showing the old title.
             val starting = LocalStarting.current
             Column(Modifier.weight(1f).padding(horizontal = 12.dp)) {

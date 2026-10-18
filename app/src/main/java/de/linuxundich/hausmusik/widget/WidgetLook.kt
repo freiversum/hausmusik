@@ -13,10 +13,19 @@ import coil3.request.ImageRequest
 import coil3.request.SuccessResult
 import coil3.request.allowHardware
 import coil3.toBitmap
+import de.linuxundich.hausmusik.R
+import de.linuxundich.hausmusik.sonos.SourceKind
 import de.linuxundich.hausmusik.ui.theme.CoverColors
 
 /** Cover colors and the background gradient drawn from them. */
 internal data class WidgetLook(val colors: CoverColors, val background: Bitmap)
+
+/** The placeholder for a missing cover, as on the stage: an input for line-in, a TV for TV. */
+internal fun placeholderFor(kind: SourceKind?): Int = when (kind) {
+    SourceKind.LineIn -> R.drawable.ic_input
+    SourceKind.Tv -> R.drawable.ic_tv
+    else -> R.drawable.ic_speaker
+}
 
 internal suspend fun loadCover(context: Context, url: String): Bitmap? {
     val request = ImageRequest.Builder(context).data(url).size(384).allowHardware(false).build()

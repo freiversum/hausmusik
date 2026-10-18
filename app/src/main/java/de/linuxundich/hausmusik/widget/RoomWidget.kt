@@ -104,7 +104,7 @@ class RoomWidget : GlanceAppWidget() {
                             Image(ImageProvider(bmp), null, GlanceModifier.size(48.dp).cornerRadius(14.dp), contentScale = ContentScale.Crop)
                         } else {
                             Image(
-                                ImageProvider(if (favorite != null) R.drawable.ic_favorite else R.drawable.ic_speaker), null,
+                                ImageProvider(if (favorite != null) R.drawable.ic_favorite else placeholderFor(now?.kind)), null,
                                 GlanceModifier.size(24.dp), colorFilter = ColorFilter.tint(ColorProvider(c.accent)),
                             )
                         }

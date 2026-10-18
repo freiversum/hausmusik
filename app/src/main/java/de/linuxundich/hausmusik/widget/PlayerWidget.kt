@@ -182,12 +182,12 @@ class PlayerWidget : GlanceAppWidget() {
         if (offline) context.getString(R.string.offline_short) else (group?.nowPlaying?.let { it.artist ?: it.station }).orEmpty()
 
     @Composable
-    private fun CoverImage(cover: Bitmap?, c: CoverColors, size: Dp, corner: Dp) {
+    private fun CoverImage(cover: Bitmap?, group: GroupState?, c: CoverColors, size: Dp, corner: Dp) {
         Box(GlanceModifier.size(size).cornerRadius(corner).background(ColorProvider(c.subtle)), contentAlignment = Alignment.Center) {
             if (cover != null) {
                 Image(ImageProvider(cover), null, GlanceModifier.size(size).cornerRadius(corner), contentScale = ContentScale.Crop)
             } else {
-                Image(ImageProvider(R.drawable.ic_speaker), null, GlanceModifier.size(size / 2), colorFilter = ColorFilter.tint(ColorProvider(c.content)))
+                Image(ImageProvider(placeholderFor(group?.nowPlaying?.kind)), null, GlanceModifier.size(size / 2), colorFilter = ColorFilter.tint(ColorProvider(c.content)))
             }
         }
     }
@@ -238,7 +238,7 @@ class PlayerWidget : GlanceAppWidget() {
         }
         if (narrow) {
             Row(GlanceModifier.fillMaxSize().padding(10.dp).clickable(actionStartActivity<MainActivity>()), verticalAlignment = Alignment.CenterVertically) {
-                CoverImage(cover, c, 48.dp, 14.dp)
+                CoverImage(cover, group, c, 48.dp, 14.dp)
                 Spacer(GlanceModifier.width(10.dp))
                 texts(GlanceModifier.defaultWeight())
                 Spacer(GlanceModifier.width(6.dp))
@@ -251,7 +251,7 @@ class PlayerWidget : GlanceAppWidget() {
             GlanceModifier.fillMaxSize().padding(start = 10.dp, end = 10.dp, top = 8.dp, bottom = 8.dp).clickable(actionStartActivity<MainActivity>()),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            CoverImage(cover, c, 64.dp, 16.dp)
+            CoverImage(cover, group, c, 64.dp, 16.dp)
             Spacer(GlanceModifier.width(12.dp))
             Column(GlanceModifier.defaultWeight()) {
                 Row(GlanceModifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
@@ -310,7 +310,7 @@ class PlayerWidget : GlanceAppWidget() {
     @Composable
     private fun Large(context: Context, group: GroupState?, cover: Bitmap?, offline: Boolean, c: CoverColors, modifier: GlanceModifier, status: WidgetStatus) {
         Row(modifier.padding(horizontal = 14.dp, vertical = 10.dp).clickable(actionStartActivity<MainActivity>()), verticalAlignment = Alignment.CenterVertically) {
-            CoverImage(cover, c, 112.dp, 20.dp)
+            CoverImage(cover, group, c, 112.dp, 20.dp)
             Spacer(GlanceModifier.width(14.dp))
             Column(GlanceModifier.defaultWeight(), verticalAlignment = Alignment.CenterVertically) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
