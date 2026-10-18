@@ -9,7 +9,7 @@ The complete list, with the details the [README](../README.md) leaves out.
 - **Your library.** Sonos favorites, albums on your music share, radio stations and Sonos playlists.
 - **Details.** Facts, a short Wikipedia text and a picture for the playing artist and album, from MusicBrainz, Wikipedia and the Cover Art Archive, all free sources. Also from the library (long press, or the info button on an album page) and the queue. Off until you switch them on.
 - **Your Sonos, kept tidy.** Add albums, tracks and stations to the Sonos favorites or remove them, add anything to a Sonos playlist, rename and delete playlists, remove tracks from them: a long press in the library.
-- **Line-in.** A speaker's analog input (a record player on a Connect:Amp) shows under Radio and plays in any room.
+- **Line-in.** A speaker's analog input (a record player on a Connect:Amp) has its own Inputs tab in the library (shown only when there is one) and plays in any room; the card of its own room in the rooms sheet plays it with one tap.
 - **Everywhere.** One tap lets every room play along, except those you keep out in the settings. Crossfade is a switch in the stage menu.
 - **Shortcuts, widgets, automation.** Long press the app icon for "pause everywhere" and favorites; a small widget plays or pauses one room or starts a favorite there; Tasker and Home Assistant can send the same commands as intents (see [docs/development.md](development.md#commands-from-outside)).
 - **Music video.** For many songs Wikidata knows the official YouTube video; Hausmusik opens it in the YouTube app at the point the speakers play (no ads with YouTube Premium). Otherwise a YouTube search. Off until you switch it on.

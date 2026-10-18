@@ -42,6 +42,8 @@ enum class LibraryTab(val objectId: String, val grid: Boolean) {
     Genres("A:GENRE", false),
     Radio("R:0/0", false),
     Playlists("SQ:", true),
+    /** Analog inputs of the household (line-in); the chip shows only when there is one. */
+    Inputs("linein", false),
     /** Music services linked through SMAPI. */
     Services("svc:", false),
     /** Local, not a Sonos container. */
@@ -317,24 +319,22 @@ class LibraryViewModel @Inject constructor(
         load(LibraryTab.Playlists.objectId, force = true)
     }
 
-    // Analog inputs show below the stations of the radio tab, in their own section; asked live, not cached.
-    private var lineIns: List<DidlObject>? = null
-    private suspend fun withInputs(objectId: String, items: List<DidlObject>): List<DidlObject> {
-        if (objectId != LibraryTab.Radio.objectId) return items
-        val inputs = lineIns ?: repo.lineIns().also { lineIns = it }
-        return items + inputs
-    }
-
     fun load(objectId: String, force: Boolean = false) {
+        if (objectId == LibraryTab.Inputs.objectId) {
+            // Asked live from the players each time (the repository keeps the answers): at the
+            // first start the rooms may not be known yet.
+            viewModelScope.launch { _lists.update { it + (objectId to ListState.Loaded(repo.lineIns())) } }
+            return
+        }
         if (!force && _lists.value[objectId] is ListState.Loaded) return
         if (objectId.startsWith(ServiceIds.OVERVIEW)) { loadService(objectId); return }
         viewModelScope.launch {
             val cached = if (force) null else repo.cachedList(objectId)
-            if (cached != null) _lists.update { it + (objectId to ListState.Loaded(withInputs(objectId, cached.items))) }
+            if (cached != null) _lists.update { it + (objectId to ListState.Loaded(cached.items)) }
             if (cached?.current == true) return@launch
             if (cached == null) _lists.update { it + (objectId to ListState.Loading) }
             val result = repo.loadAndCache(objectId).onFailure { android.util.Log.w("Library", "browse $objectId failed", it) }
-            result.onSuccess { items -> val all = withInputs(objectId, items); _lists.update { it + (objectId to ListState.Loaded(all)) } }
+            result.onSuccess { items -> _lists.update { it + (objectId to ListState.Loaded(items)) } }
                 .onFailure { if (cached == null) _lists.update { it + (objectId to ListState.Error) } }
         }
     }

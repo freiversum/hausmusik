@@ -17,8 +17,10 @@ import de.linuxundich.hausmusik.data.LyricsRepository
 import de.linuxundich.hausmusik.data.Settings
 import de.linuxundich.hausmusik.sonos.NowPlaying
 import de.linuxundich.hausmusik.ui.stage.LyricsUi
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import de.linuxundich.hausmusik.data.QueueMode
 import de.linuxundich.hausmusik.sonos.DidlObject
@@ -246,6 +248,14 @@ class MainViewModel @Inject constructor(
             { moved -> { repo.separate(moved).onFailure { _messages.send(R.string.error_command) } } },
             { _messages.send(R.string.error_command); null },
         )
+
+    private val _inputs = MutableStateFlow<List<DidlObject>>(emptyList())
+    /** The household's analog inputs, for the room cards; asked when the rooms sheet opens. */
+    val inputs: StateFlow<List<DidlObject>> = _inputs.asStateFlow()
+
+    fun loadInputs() = viewModelScope.launch { _inputs.value = repo.lineIns() }
+
+    fun playInput(groupId: String, input: DidlObject) = run { repo.playInput(groupId, input) }
 
     fun pauseAll() = run {
         runCatching {

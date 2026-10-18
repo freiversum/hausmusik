@@ -317,7 +317,6 @@
     <string name="lost_body">Hausmusik versucht es weiter.</string>
     <string name="lost_address">Adresse</string>
     <string name="line_in_section">Eingänge</string>
-    <string name="line_in_of">Eingang · %1$s</string>
     <string name="play_always_replace">Immer ersetzen, nicht mehr fragen</string>
     <string name="queue_replaced">Warteschlange von %1$s ersetzt</string>
     <string name="settings_playing">Abspielen</string>

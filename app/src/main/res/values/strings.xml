@@ -319,7 +319,6 @@
     <string name="lost_body">Hausmusik keeps trying.</string>
     <string name="lost_address">Address</string>
     <string name="line_in_section">Inputs</string>
-    <string name="line_in_of">Input · %1$s</string>
     <string name="play_always_replace">Always replace, don\'t ask again</string>
     <string name="queue_replaced">Replaced the queue of %1$s</string>
     <string name="settings_playing">Playing</string>

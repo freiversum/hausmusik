@@ -6,6 +6,13 @@ All notable changes to Hausmusik are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- Line-in moved out of the Radio tab: the library has its own "Inputs" tab,
+  shown only when a speaker has an input. A room card in the rooms sheet now
+  offers the room's own input as a button beside "Group" (hidden while it
+  plays), so the record player starts in one tap.
+
 ### Fixed
 
 - Line-in and TV showed the raw stream address (`x-rincon-stream:RINCON_…`)

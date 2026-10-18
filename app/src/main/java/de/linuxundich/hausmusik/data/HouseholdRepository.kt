@@ -878,6 +878,15 @@ class HouseholdRepository @Inject constructor(
         }.awaitAll().filterNotNull()
     }
 
+    /** Plays an input from [lineIns] in the group [groupId], whichever room the input belongs to. */
+    suspend fun playInput(groupId: String, input: DidlObject): Result<Unit> {
+        val uri = input.uri ?: return Result.failure(IOException("not playable: ${input.id}"))
+        return commandFor(groupId) { c ->
+            c.setUri(uri, Didl.minimal(input.id, input.parentId, input.title, input.upnpClass))
+            c.play()
+        }
+    }
+
     // Sonos favorites and playlists: any player of the household answers.
 
     /** The desc of the music service an item comes from (`sid=` in its URI); set by MusicServices. */

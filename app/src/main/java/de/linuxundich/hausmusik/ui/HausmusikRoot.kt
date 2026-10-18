@@ -315,6 +315,8 @@ fun HausmusikRoot(vm: MainViewModel = hiltViewModel()) {
     }
 
     if (roomsOpen) {
+        LaunchedEffect(Unit) { vm.loadInputs() }
+        val inputs by vm.inputs.collectAsStateWithLifecycle()
         RoomsSheet(
             household, colors,
             RoomActions(
@@ -327,6 +329,8 @@ fun HausmusikRoot(vm: MainViewModel = hiltViewModel()) {
                 onEverywhere = vm::joinEverywhere,
                 onPauseAll = vm::pauseAll,
                 onFocus = vm::select,
+                inputs = inputs,
+                onPlayInput = vm::playInput,
             ),
             snackbar = snackbar,
             onDismiss = { roomsOpen = false },

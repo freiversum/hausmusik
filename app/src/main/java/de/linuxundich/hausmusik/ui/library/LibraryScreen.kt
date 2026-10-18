@@ -97,7 +97,7 @@ import de.linuxundich.hausmusik.ui.theme.AppIcons
  * others. Before, the services hid in the seventh of eight tabs.
  */
 @Composable
-private fun SourceChips(vm: LibraryViewModel, tab: LibraryTab, service: DidlObject?, services: List<DidlObject>, padding: PaddingValues) {
+private fun SourceChips(vm: LibraryViewModel, tab: LibraryTab, service: DidlObject?, services: List<DidlObject>, inputs: Boolean, padding: PaddingValues) {
     // The user's order and choice (Settings › Libraries); favorites first, history and more services last.
     val prefs by vm.sourcePrefs.collectAsStateWithLifecycle()
     val byKey = services.associateBy { s -> ServiceIds.parse(s.id)?.first?.let(Sources::service) ?: s.id }
@@ -122,6 +122,8 @@ private fun SourceChips(vm: LibraryViewModel, tab: LibraryTab, service: DidlObje
                 }
             }
         }
+        // Line-in only where a player has an input: most households have none.
+        if (inputs) item { FilterChip(selected = service == null && tab == LibraryTab.Inputs, onClick = { vm.select(LibraryTab.Inputs) }, label = { Text(stringResource(R.string.line_in_section)) }) }
         item { FilterChip(selected = service == null && tab == LibraryTab.History, onClick = { vm.select(LibraryTab.History) }, label = { Text(stringResource(R.string.library_history)) }) }
         item { FilterChip(selected = service == null && tab == LibraryTab.Services, onClick = { vm.select(LibraryTab.Services) }, label = { Text(stringResource(R.string.library_more_services)) }) }
     }
@@ -134,6 +136,7 @@ private fun LibraryTab.label() = when (this) {
     LibraryTab.Albums -> R.string.library_albums
     LibraryTab.Radio -> R.string.library_radio
     LibraryTab.Playlists -> R.string.library_playlists
+    LibraryTab.Inputs -> R.string.line_in_section
     LibraryTab.Services -> R.string.library_services
     LibraryTab.History -> R.string.library_history
 }
@@ -166,7 +169,8 @@ fun LibraryScreen(
     val service by vm.service.collectAsStateWithLifecycle()
     val lists by vm.lists.collectAsStateWithLifecycle()
     // The linked services become sources of their own beside "My music".
-    LaunchedEffect(Unit) { vm.load(LibraryTab.Services.objectId) }
+    LaunchedEffect(Unit) { vm.load(LibraryTab.Services.objectId); vm.load(LibraryTab.Inputs.objectId) }
+    val hasInputs = (lists[LibraryTab.Inputs.objectId] as? ListState.Loaded)?.items.orEmpty().isNotEmpty()
     val services = (lists[LibraryTab.Services.objectId] as? ListState.Loaded)?.items.orEmpty()
         .filter { it.isContainer && it.id != ServiceIds.MORE && it.upnpClass != ServiceIds.LINK_CLASS }
     val query by vm.query.collectAsStateWithLifecycle()
@@ -206,7 +210,7 @@ fun LibraryScreen(
                         // Landscape: the tabs share the bar with the title to save a row.
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(stringResource(R.string.library))
-                            SourceChips(vm, tab, service, services, PaddingValues(start = 16.dp, end = 8.dp))
+                            SourceChips(vm, tab, service, services, hasInputs, PaddingValues(start = 16.dp, end = 8.dp))
                         }
                     } else {
                         Text(stringResource(R.string.library))
@@ -234,7 +238,7 @@ fun LibraryScreen(
                     SearchOverview(search, query, vm::artUrl, onOpenContainer, onPlay, vm::artistPlayback, onRetry = vm::retrySearch)
                     return@Column
                 }
-                if (!wide) SourceChips(vm, tab, service, services, PaddingValues(horizontal = 16.dp))
+                if (!wide) SourceChips(vm, tab, service, services, hasInputs, PaddingValues(horizontal = 16.dp))
                 // The parts of "My music" as a second, smaller row.
                 if (service == null && tab in MUSIC_TABS) {
                     LazyRow(contentPadding = PaddingValues(horizontal = 16.dp, vertical = 2.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -608,15 +612,7 @@ private fun ItemList(
             }
             else -> LazyColumn(contentPadding = PaddingValues(vertical = 8.dp)) {
                 // Services often send no track numbers; then the position in the album stands in.
-                // Analog inputs (radio tab) get their own heading: they are not stations.
-                val firstInput = state.items.indexOfFirst { it.id.startsWith("linein:") }
                 itemsIndexed(state.items, key = { _, it -> it.id }) { i, item ->
-                    if (i == firstInput) {
-                        Text(
-                            stringResource(R.string.line_in_section), style = MaterialTheme.typography.titleSmall,
-                            color = MaterialTheme.colorScheme.primary, modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 4.dp),
-                        )
-                    }
                     ItemRow(item, artUrl, numbered, i + 1) { onClick(item) }
                 }
             }
@@ -667,7 +663,7 @@ internal fun ItemRow(item: DidlObject, artUrl: (String?) -> String?, numbered: B
                 )
             }
             (if (item.upnpClass == ServiceIds.LINK_CLASS) item.description
-            else if (item.id.startsWith("linein:")) stringResource(R.string.line_in_of, item.creator.orEmpty())
+            else if (item.id.startsWith("linein:")) item.creator
             else if (numbered) item.creator else listOfNotNull(item.creator, item.album).joinToString(" · ")).takeIf { !it.isNullOrEmpty() }?.let {
                 Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1)
             }

@@ -73,6 +73,7 @@ import de.linuxundich.hausmusik.ui.common.sheetDragHandle
 import de.linuxundich.hausmusik.ui.common.sheetMaxWidth
 import de.linuxundich.hausmusik.data.GroupState
 import de.linuxundich.hausmusik.data.Household
+import de.linuxundich.hausmusik.sonos.DidlObject
 import de.linuxundich.hausmusik.sonos.SonosPlayer
 import de.linuxundich.hausmusik.sonos.SourceKind
 import de.linuxundich.hausmusik.sonos.TransportState
@@ -93,6 +94,9 @@ data class RoomActions(
     val onEverywhere: () -> Unit = {},
     /** Makes a group the selected one but keeps the sheet open (for "Group"). */
     val onFocus: (String) -> Unit = {},
+    /** The household's analog inputs: a card offers those of its own rooms. */
+    val inputs: List<DidlObject> = emptyList(),
+    val onPlayInput: (String, DidlObject) -> Unit = { _, _ -> },
 )
 
 /**
@@ -342,8 +346,18 @@ private fun GroupTile(
                         )
                     }
                 }
-                Spacer(Modifier.weight(1f))
-                TextButton(onClick = onGroup) { Text(stringResource(R.string.rooms_group), color = colors.accent) }
+                // The room's own input (turntable, TV box) in one tap; hidden while it plays.
+                // Right-aligned before "Group"; a long name shortens, "Group" never wraps.
+                Row(Modifier.weight(1f), horizontalArrangement = Arrangement.End) {
+                    val playing = g.nowPlaying?.takeIf { it.kind == SourceKind.LineIn }?.title
+                    actions.inputs.filter { i -> i.title != playing && members.any { i.uri == "x-rincon-stream:${it.uuid}" } }.forEach { input ->
+                        TextButton(onClick = { actions.onPlayInput(g.id, input) }, modifier = Modifier.weight(1f, fill = false)) {
+                            Icon(AppIcons.Input, contentDescription = null, tint = colors.accent, modifier = Modifier.padding(end = 6.dp).size(18.dp))
+                            Text(input.title, color = colors.accent, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                        }
+                    }
+                }
+                TextButton(onClick = onGroup) { Text(stringResource(R.string.rooms_group), color = colors.accent, maxLines = 1, softWrap = false) }
             }
         }
     }
