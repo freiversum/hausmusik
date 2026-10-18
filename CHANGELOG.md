@@ -6,6 +6,13 @@ All notable changes to Hausmusik are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- Line-in and TV showed the raw stream address (`x-rincon-stream:RINCON_…`)
+  as the title. The stage, rooms sheet, widget and notification now show the
+  input's name (for example "Turntable"), or "TV", plus its room when the input
+  belongs to another room.
+
 ## [0.6.0] - 2026-10-17
 
 ### Changed

@@ -27,6 +27,7 @@ import de.linuxundich.hausmusik.sonos.PlayMode
 import de.linuxundich.hausmusik.sonos.SoapClient
 import de.linuxundich.hausmusik.sonos.SonosPlayer
 import de.linuxundich.hausmusik.sonos.SonosPlayerClient
+import de.linuxundich.hausmusik.sonos.SourceKind
 import de.linuxundich.hausmusik.sonos.SsdpDiscovery
 import de.linuxundich.hausmusik.sonos.playsDirectly
 import java.io.IOException
@@ -510,7 +511,7 @@ class HouseholdRepository @Inject constructor(
         // tiles show mute, and the group slider leaves muted speakers alone (audibleVolume).
         val mutes = gs.group.members.map { m -> async { m.uuid to runCatching { client(m).mute() }.getOrDefault(false) } }
         val volumes = gs.group.members.map { m -> async { m.uuid to client(m).volume() } }
-        val now = NowPlaying.from(position.await(), media.await())
+        val now = NowPlaying.from(position.await(), media.await())?.let { withSourceName(it, media.await().currentUri?.ifEmpty { null } ?: position.await().trackUri, gs) }
         var next = gs.copy(
             transport = transport.await(),
             nowPlaying = now,
@@ -533,6 +534,25 @@ class HouseholdRepository @Inject constructor(
         val vols = volumes.awaitAll().toMap()
         val muted = mutes.awaitAll().toMap()
         next.copy(groupVolume = audibleVolume(vols, muted) ?: groupVolume.await(), memberVolumes = vols, memberMutes = muted)
+    }
+
+    /**
+     * Line-in and TV carry no metadata: Sonos only reports `x-rincon-stream:<uuid>`
+     * or `x-sonos-htastream:<uuid>:spdif`. Show the input's name instead, and its
+     * room when it belongs to another group.
+     */
+    private suspend fun withSourceName(now: NowPlaying, mediaUri: String?, gs: GroupState): NowPlaying {
+        if (now.kind != SourceKind.LineIn && now.kind != SourceKind.Tv) return now
+        val uri = mediaUri.orEmpty()
+        val uuid = uri.substringAfter(':').substringBefore(':').substringBefore('#')
+        val player = _state.value.allPlayers.firstOrNull { it.uuid == uuid }
+        val room = player?.takeIf { p -> gs.group.members.none { it.uuid == p.uuid } }?.roomName
+        val name = when (now.kind) {
+            SourceKind.Tv -> "TV"
+            else -> player?.let { p -> inputs[p.uuid] ?: client(p).audioInputName().orEmpty().also { inputs[p.uuid] = it } }
+                ?.ifEmpty { null } ?: "Line-In"
+        }
+        return now.copy(title = name, artist = room, album = null)
     }
 
     // Volume: the slider moves at once; Sonos gets at most one request per
