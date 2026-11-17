@@ -18,32 +18,66 @@
 </p>
 
 <p align="center">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_stage.png" alt="The stage: the playing track, large and in the colors of its cover" width="19%">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_rooms.png" alt="Every room with its own volume; tick a room to let it play along" width="19%">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_queue.png" alt="The queue with covers" width="19%">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_library.png" alt="Albums from the music share as a cover grid" width="19%">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_lyrics.png" alt="Synced lyrics over the stage" width="19%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_stage.png" alt="The stage: the playing track, large and in the colors of its cover" width="30%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_rooms.png" alt="Every room with its own volume; tick a room to let it play along" width="30%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_library.png" alt="Albums from the music share as a cover grid" width="30%">
 </p>
 
 <p align="center"><sub>The artists and covers in the screenshots are invented.</sub></p>
 
 ## What it does
 
+<table>
+<tr>
+<td width="33%" valign="top">
+
 ### The stage
 
 Open the app and the music is right there: the playing track, large and in the colors of its cover. Play, skip, seek and set the volume with your thumb. If you like, a stage light glows in the cover's colors, a record turns beside the cover, and while your phone charges it becomes a night screen with cover, time and the line being sung.
+
+</td>
+<td width="33%" valign="top">
 
 ### Every room in one place
 
 See at a glance what plays where. Drag one room onto another to play together, tick a room to let it join, give every speaker its own volume or mute a single room. One tap lets the whole house play along, and one tap pauses everything.
 
+</td>
+<td width="33%" valign="top">
+
 ### All your music
 
 Your Sonos favorites, the music share on your network, internet radio, Sonos playlists and the record player on a speaker's line-in. Linked music services such as Spotify can be browsed and searched right in the app. Search finds artists, albums and tracks in your music share and your services at once. In Settings you choose which of these sources the library shows, and in which order.
 
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td valign="middle">
+
 ### Lyrics and background
 
 Time-synced lyrics fill the stage; tap a line to jump there. For the playing artist and album, Hausmusik shows facts, a short Wikipedia text and a picture, and it can open the official music video in the YouTube app. Each of these is off until you switch it on.
+
+### Part of your phone
+
+Control the music from the notification and the lock screen, and change the volume of your room with the phone's volume buttons, even outside the app. Home screen widgets, a Quick Settings tile, shortcuts on the app icon and Android's output switcher are included. Tasker and Home Assistant can send commands too.
+
+</td>
+<td width="270" align="center">
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_lyrics.png" alt="Synced lyrics over the stage" width="250">
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td width="270" align="center">
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_queue.png" alt="The queue with covers" width="250">
+</td>
+<td valign="middle">
 
 ### Queue, alarms and sound
 
@@ -52,13 +86,23 @@ Time-synced lyrics fill the stage; tap a line to jump there. For the playing art
 - Create and edit Sonos alarms, set a sleep timer, adjust bass, treble and loudness for every speaker, and turn on crossfade.
 - Keep your Sonos favorites and playlists tidy without the Sonos app.
 
-### Part of your phone
-
-Control the music from the notification and the lock screen, and change the volume of your room with the phone's volume buttons, even outside the app. Home screen widgets, a Quick Settings tile, shortcuts on the app icon and Android's output switcher are included. Tasker and Home Assistant can send commands too.
-
 ### A second life for older speakers
 
 Hausmusik works with current Sonos systems and keeps first-generation (S1) players going, which the current Sonos app no longer supports.
+
+</td>
+</tr>
+</table>
+
+## At a glance
+
+| | |
+|---|---|
+| **Runs on** | Android 8.0 or newer, in the same Wi-Fi as the speakers |
+| **Works with** | current Sonos systems and first-generation (S1) players |
+| **Plays** | Sonos favorites, the music share, internet radio, Sonos playlists, line-in and linked services such as Spotify |
+| **Account** | none: no Sonos account, no cloud, no ads, no analytics |
+| **Licence** | GPL-3.0-or-later |
 
 ## Your privacy
 
@@ -69,7 +113,10 @@ Hausmusik has no account, no ads and no analytics. It talks to your speakers ins
 1. Download `hausmusik-<version>.apk` from the [latest release](https://github.com/linuxundich/hausmusik/releases/latest) and open it on your phone (Android 8.0 or newer).
 2. Allow the "Nearby devices" permission when Android asks: Hausmusik needs it to find your speakers.
 
-Your phone needs to be in the same Wi-Fi as the speakers. Hausmusik is coming to Google Play and F-Droid. Want to build it yourself? See [docs/development.md](docs/development.md).
+> [!NOTE]
+> Your phone needs to be in the same Wi-Fi as the speakers.
+
+Hausmusik is coming to Google Play and F-Droid. Want to build it yourself? See [docs/development.md](docs/development.md).
 
 ## More
 

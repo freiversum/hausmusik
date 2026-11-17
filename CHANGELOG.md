@@ -8,6 +8,7 @@ All notable changes to Hausmusik are documented here. The format follows
 
 ### Changed
 
+- README restructured: feature grid, screenshots beside the text, facts at a glance.
 - Line-in moved out of the Radio tab: the library has its own "Inputs" tab,
   shown only when a speaker has an input. A room card in the rooms sheet now
   offers the room's own input as a button beside "Group" (hidden while it
