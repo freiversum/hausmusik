@@ -163,6 +163,9 @@
     <string name="settings_noson">Die Sonos-Implementierung basiert auf noson von Jean-Luc Barrière (GPL-3.0-or-later).</string>
     <string name="settings_source">Quelltext</string>
     <string name="settings_privacy">Datenschutz</string>
+    <!-- Settings → About: link to freiversum, the umbrella of the independent projects -->
+    <string name="freiversum_title">Ein Stern im freiversum</string>
+    <string name="freiversum_text">Unabhängige Projekte rund um Linux und FOSS</string>
     <string name="licenses">Open-Source-Lizenzen</string>
     <string name="licenses_intro">Hausmusik baut auf diesen Projekten auf. Danke an alle, die daran arbeiten.</string>
     <string name="licenses_apache">Apache License 2.0: apache.org/licenses/LICENSE-2.0. GNU GPL 3.0: gnu.org/licenses/gpl-3.0. Die vollständige Liste steht in NOTICE.md im Quellcode.</string>

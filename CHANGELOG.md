@@ -6,6 +6,13 @@ All notable changes to Hausmusik are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- Settings → About ends with a quiet row "A star in the freiversum" ("Ein Stern
+  im freiversum"): the constellation mark of freiversum, the umbrella of the
+  independent projects around Linux and FOSS, and a link to freiversum.de that
+  opens in the browser, without tracking parameters.
+
 ### Changed
 
 - README restructured: feature grid, screenshots beside the text, facts at a glance.

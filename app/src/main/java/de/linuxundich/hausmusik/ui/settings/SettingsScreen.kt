@@ -4,6 +4,10 @@
 package de.linuxundich.hausmusik.ui.settings
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -203,6 +207,8 @@ fun SettingsScreen(
                 OutlinedButton(onClick = { runCatching { uriHandler.openUri(SOURCE_URL) } }) { Text(stringResource(R.string.settings_source)) }
                 OutlinedButton(onClick = { runCatching { uriHandler.openUri(PRIVACY_URL) } }) { Text(stringResource(R.string.settings_privacy)) }
             }
+            // freiversum: the umbrella of the independent projects (like the website footer), one quiet row
+            FreiversumRow { runCatching { uriHandler.openUri(FREIVERSUM_URL) } }
         }
         }
     }
@@ -210,6 +216,32 @@ fun SettingsScreen(
 
 private const val SOURCE_URL = "https://github.com/linuxundich/hausmusik"
 private const val PRIVACY_URL = "https://github.com/linuxundich/hausmusik/blob/main/PRIVACY.md"
+private const val FREIVERSUM_URL = "https://freiversum.de/"
+
+/**
+ * Link to freiversum.de with the constellation mark; opens in the browser, no tracking parameters.
+ * Laid out like a list item, but flush with the section's text instead of a ListItem's own inset.
+ */
+@Composable
+private fun FreiversumRow(onClick: () -> Unit) {
+    Row(
+        Modifier.fillMaxWidth().clickable(role = androidx.compose.ui.semantics.Role.Button, onClick = onClick).padding(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        androidx.compose.foundation.Image(painterResource(R.drawable.ic_freiversum), null, Modifier.size(24.dp))
+        Column(Modifier.weight(1f)) {
+            Text(stringResource(R.string.freiversum_title), style = MaterialTheme.typography.bodyLarge)
+            Text(stringResource(R.string.freiversum_text), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                FREIVERSUM_URL.removePrefix("https://").removeSuffix("/"),
+                style = MaterialTheme.typography.bodySmall.copy(fontFamily = FontFamily.Monospace),
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        Icon(painterResource(R.drawable.ic_open_in_new), null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+}
 
 @Composable
 private fun EffectSwitch(title: Int, body: Int, checked: Boolean, onChange: (Boolean) -> Unit) {
