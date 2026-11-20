@@ -16,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
@@ -196,7 +197,8 @@ private fun OffsetBar(found: LyricsUi.Found, colors: CoverColors, onPlain: (() -
             IconButton(onClick = { found.onOffset(offset - STEP_MS) }) {
                 Icon(AppIcons.Remove, stringResource(R.string.lyrics_earlier), tint = colors.content)
             }
-            val seconds = String.format(java.util.Locale.getDefault(), "%.1f", kotlin.math.abs(offset) / 1000.0)
+            // Locale from the composition (follows a change of the app language without restart; lint NonObservableLocale)
+            val seconds = String.format(LocalLocale.current.platformLocale, "%.1f", kotlin.math.abs(offset) / 1000.0)
             Text(
                 when {
                     offset > 0 -> stringResource(R.string.lyrics_offset_later, seconds)

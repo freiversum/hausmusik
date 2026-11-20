@@ -22,6 +22,7 @@ All notable changes to Hausmusik are documented here. The format follows
   plays), so the record player starts in one tap.
 
 ### Fixed
+- The lyrics offset ("0.5 s earlier") now follows a change of the app language right away.
 
 - Line-in and TV showed the raw stream address (`x-rincon-stream:RINCON_…`)
   as the title. The stage, rooms sheet, widget and notification now show the
