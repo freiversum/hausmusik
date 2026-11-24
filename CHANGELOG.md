@@ -15,6 +15,7 @@ All notable changes to Hausmusik are documented here. The format follows
 
 ### Changed
 
+- The repository moved to the freiversum organization: https://github.com/freiversum/hausmusik. Old `github.com/linuxundich/hausmusik` links and clone URLs redirect.
 - README restructured: feature grid, screenshots beside the text, facts at a glance.
 - Line-in moved out of the Radio tab: the library has its own "Inputs" tab,
   shown only when a speaker has an input. A room card in the rooms sheet now

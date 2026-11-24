@@ -50,4 +50,4 @@ anyone.
 Christoph Langner, mail@christoph-langner.de
 
 Changes to this policy are published in the app's source repository:
-<https://github.com/linuxundich/hausmusik>
+<https://github.com/freiversum/hausmusik>

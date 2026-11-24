@@ -214,8 +214,8 @@ fun SettingsScreen(
     }
 }
 
-private const val SOURCE_URL = "https://github.com/linuxundich/hausmusik"
-private const val PRIVACY_URL = "https://github.com/linuxundich/hausmusik/blob/main/PRIVACY.md"
+private const val SOURCE_URL = "https://github.com/freiversum/hausmusik"
+private const val PRIVACY_URL = "https://github.com/freiversum/hausmusik/blob/main/PRIVACY.md"
 private const val FREIVERSUM_URL = "https://freiversum.de/"
 
 /**

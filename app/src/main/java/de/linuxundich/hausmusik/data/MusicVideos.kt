@@ -78,7 +78,7 @@ class MusicVideos(
         val url = base.newBuilder().addQueryParameter("format", "json").addQueryParameter("query", query(title, artist)).build()
         val body = http.newCall(
             Request.Builder().url(url)
-                .header("User-Agent", "Hausmusik/${BuildConfig.VERSION_NAME} (https://github.com/linuxundich/hausmusik)")
+                .header("User-Agent", "Hausmusik/${BuildConfig.VERSION_NAME} (https://github.com/freiversum/hausmusik)")
                 .header("Accept", "application/sparql-results+json").build(),
         ).execute().use { r -> if (!r.isSuccessful) throw java.io.IOException("Wikidata: HTTP ${r.code}") else r.body.string() }
         val bindings = json.parseToJsonElement(body).jsonObject["results"]?.jsonObject?.get("bindings")?.jsonArray.orEmpty()

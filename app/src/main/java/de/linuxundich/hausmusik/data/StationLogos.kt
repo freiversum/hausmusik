@@ -192,7 +192,7 @@ class StationLogos(
 
         private const val MIN_ICON = 96
         private const val MAX_PAGE = 512L * 1024
-        private val USER_AGENT = "Hausmusik/${BuildConfig.VERSION_NAME} (https://github.com/linuxundich/hausmusik)"
+        private val USER_AGENT = "Hausmusik/${BuildConfig.VERSION_NAME} (https://github.com/freiversum/hausmusik)"
         // Some station sites answer bots with an empty page.
         private const val BROWSER_AGENT = "Mozilla/5.0 (Android; Mobile) Hausmusik"
 

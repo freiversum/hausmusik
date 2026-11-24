@@ -20,7 +20,7 @@ The Sonos layer in `sonos/` is based on **noson** (libnoson) by Jean-Luc
 Barrière, <https://github.com/janbar/noson>, licensed under the
 GPL-3.0-or-later. libnoson is the library behind
 [noson-app](https://github.com/janbar/noson-app) and behind
-[Gnomos](https://github.com/linuxundich/gnomos), the author's Sonos client for
+[Gnomos](https://github.com/freiversum/gnomos), the author's Sonos client for
 GNOME, from which Hausmusik grew.
 
 Hausmusik's Kotlin code follows libnoson: the way players are discovered, the

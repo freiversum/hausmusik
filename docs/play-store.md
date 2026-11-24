@@ -6,7 +6,7 @@ same licence. Others may build and share the app for free.
 
 ## Licence duties for the store build
 
-- [ ] Public repository `github.com/linuxundich/hausmusik` with the exact
+- [ ] Public repository `github.com/freiversum/hausmusik` with the exact
       source of every store release, tagged `vX.Y.Z` (the version name comes
       from the tag, see `app/build.gradle.kts`).
 - [x] *Settings → About* links to the source and the privacy policy, shows the
@@ -33,7 +33,7 @@ same licence. Others may build and share the app for free.
 
 | Form | Answer |
 |---|---|
-| Privacy policy | `https://github.com/linuxundich/hausmusik/blob/main/PRIVACY.md` |
+| Privacy policy | `https://github.com/freiversum/hausmusik/blob/main/PRIVACY.md` |
 | Ads | No ads |
 | App access | No login needed; the app needs Sonos speakers in the same Wi-Fi. Reviewers get a note and a short video against the fake household (`tools/fake-sonos`) |
 | Target audience | 18+ (not directed at children) |
@@ -69,7 +69,7 @@ Full description:
 >   and Wikipedia
 >
 > No ads, no tracking, no account. Hausmusik is free software under the GNU
-> GPL 3.0 or later; the source is at github.com/linuxundich/hausmusik.
+> GPL 3.0 or later; the source is at github.com/freiversum/hausmusik.
 >
 > Hausmusik is not affiliated with Sonos, Inc. Sonos is a trademark of
 > Sonos, Inc.
@@ -100,7 +100,7 @@ Vollständige Beschreibung:
 >
 > Keine Werbung, kein Tracking, kein Konto. Hausmusik ist freie Software unter
 > der GNU GPL 3.0 oder neuer; der Quelltext liegt auf
-> github.com/linuxundich/hausmusik.
+> github.com/freiversum/hausmusik.
 >
 > Hausmusik steht in keiner Verbindung zu Sonos, Inc. Sonos ist eine Marke von
 > Sonos, Inc.

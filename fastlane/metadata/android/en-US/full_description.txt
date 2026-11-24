@@ -9,6 +9,6 @@ Hausmusik controls your Sonos speakers directly in your home network, without a 
 - Notification, lock screen and volume buttons, widget, quick settings tile, system output switcher
 - Optional: synced lyrics, artist pictures and background from MusicBrainz and Wikipedia
 
-No ads, no tracking, no account. Hausmusik is free software under the GNU GPL 3.0 or later; the source is at github.com/linuxundich/hausmusik.
+No ads, no tracking, no account. Hausmusik is free software under the GNU GPL 3.0 or later; the source is at github.com/freiversum/hausmusik.
 
 Hausmusik is not affiliated with Sonos, Inc. Sonos is a trademark of Sonos, Inc.

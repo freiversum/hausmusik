@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/linuxundich/hausmusik/releases/latest"><strong>Download APK</strong></a>
+  <a href="https://github.com/freiversum/hausmusik/releases/latest"><strong>Download APK</strong></a>
   &nbsp;·&nbsp; Google Play: coming soon &nbsp;·&nbsp; F-Droid: coming soon &nbsp;·&nbsp;
   <a href="CHANGELOG.md">Changelog</a>
 </p>
@@ -110,7 +110,7 @@ Hausmusik has no account, no ads and no analytics. It talks to your speakers ins
 
 ## Install
 
-1. Download `hausmusik-<version>.apk` from the [latest release](https://github.com/linuxundich/hausmusik/releases/latest) and open it on your phone (Android 8.0 or newer).
+1. Download `hausmusik-<version>.apk` from the [latest release](https://github.com/freiversum/hausmusik/releases/latest) and open it on your phone (Android 8.0 or newer).
 2. Allow the "Nearby devices" permission when Android asks: Hausmusik needs it to find your speakers.
 
 > [!NOTE]
@@ -121,8 +121,8 @@ Hausmusik is coming to Google Play and F-Droid. Want to build it yourself? See [
 ## More
 
 - [All features](docs/FEATURES.md), including how Hausmusik talks to the speakers · [Changelog](CHANGELOG.md) · [Planned](BACKLOG.md)
-- Found a bug or tested other Sonos hardware? [Open an issue](https://github.com/linuxundich/hausmusik/issues)
-- [Gnomos](https://github.com/linuxundich/gnomos), Hausmusik's sibling for the GNOME desktop
+- Found a bug or tested other Sonos hardware? [Open an issue](https://github.com/freiversum/hausmusik/issues)
+- [Gnomos](https://github.com/freiversum/gnomos), Hausmusik's sibling for the GNOME desktop
 
 ## Credits
 

@@ -328,7 +328,7 @@ class DetailsRepository(
 
     private fun get(url: HttpUrl): String = http.newCall(
         Request.Builder().url(url)
-            .header("User-Agent", "Hausmusik/${BuildConfig.VERSION_NAME} (https://github.com/linuxundich/hausmusik)")
+            .header("User-Agent", "Hausmusik/${BuildConfig.VERSION_NAME} (https://github.com/freiversum/hausmusik)")
             .header("Accept", "application/json").build(),
     ).execute().use { r ->
         if (!r.isSuccessful) throw HttpException(r.code, url.host) else r.body.string()

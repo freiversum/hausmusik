@@ -9,6 +9,6 @@ Hausmusik steuert deine Sonos-Lautsprecher direkt im Heimnetz, ohne Cloud-Konto.
 - Benachrichtigung, Sperrbildschirm und Lautstärketasten, Widget, Schnelleinstellung, Ausgabe-Umschalter des Systems
 - Optional: synchrone Liedtexte, Künstlerbilder und Hintergründe aus MusicBrainz und Wikipedia
 
-Keine Werbung, kein Tracking, kein Konto. Hausmusik ist freie Software unter der GNU GPL 3.0 oder neuer; der Quelltext liegt auf github.com/linuxundich/hausmusik.
+Keine Werbung, kein Tracking, kein Konto. Hausmusik ist freie Software unter der GNU GPL 3.0 oder neuer; der Quelltext liegt auf github.com/freiversum/hausmusik.
 
 Hausmusik steht in keiner Verbindung zu Sonos, Inc. Sonos ist eine Marke von Sonos, Inc.

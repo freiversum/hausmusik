@@ -66,6 +66,6 @@ class HausmusikApp : Application(), SingletonImageLoader.Factory {
     }
 
     private companion object {
-        val USER_AGENT = "Hausmusik/${BuildConfig.VERSION_NAME} (https://github.com/linuxundich/hausmusik)"
+        val USER_AGENT = "Hausmusik/${BuildConfig.VERSION_NAME} (https://github.com/freiversum/hausmusik)"
     }
 }

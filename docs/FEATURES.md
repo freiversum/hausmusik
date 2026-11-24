@@ -28,6 +28,6 @@ What is planned next is in [BACKLOG.md](../BACKLOG.md).
 2. It controls them with the same local UPnP interface the original Sonos apps used, on port 1400.
 3. Nothing leaves your home network unless you ask for it: lyrics from LRCLIB, artist pictures from Deezer and artist and album details from MusicBrainz and Wikipedia and music videos through Wikidata are off until you switch them on, and a music service you link is asked for its catalogue.
 
-The Sonos implementation is based on [noson](https://github.com/janbar/noson) by Jean-Luc Barrière, the library behind [noson-app](https://github.com/janbar/noson-app) and behind [Gnomos](https://github.com/linuxundich/gnomos), Hausmusik's sibling for the GNOME desktop.
+The Sonos implementation is based on [noson](https://github.com/janbar/noson) by Jean-Luc Barrière, the library behind [noson-app](https://github.com/janbar/noson-app) and behind [Gnomos](https://github.com/freiversum/gnomos), Hausmusik's sibling for the GNOME desktop.
 
 Music services that link through a web page (AppLink or DeviceLink, such as [bonob](https://github.com/simojenki/bonob) and Spotify) can be linked under *Library → Services*: Hausmusik opens the service's sign-in page and receives its own token, the way noson does. Browsing and searching use that token; playing goes through the speakers with the account the Sonos system already has, so the service must be set up in the Sonos app first. Services with a user name and password form are not supported.
